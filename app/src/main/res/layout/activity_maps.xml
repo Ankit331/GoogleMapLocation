@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:context=".MapsActivity"
+        tools:layout_editor_absoluteY="-51dp" />
+
+    <androidx.appcompat.widget.SearchView
+        app:theme="@style/AppSearchView"
+        android:id="@+id/idSearchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/roundedittext"
+        android:elevation="5dp"
+        app:iconifiedByDefault="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/map"
+        app:queryHint="Search Here" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/map_type_FAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="153dp"
+        android:layout_marginEnd="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:backgroundTint="#FFF"
+        app:layout="@+id/idSearchView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:rippleColor="#eff5ff"
+        app:srcCompat="@drawable/ic_map_layers" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cardviewmap"
+        android:elevation="6dp"
+        android:padding="8dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/map_type_FAB"
+        app:layout_constraintTop_toTopOf="@+id/map_type_FAB">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/map_type_selection"
+            android:layout_width="260dp"
+            android:layout_height="130dp">
+
+            <View
+                android:id="@+id/map_type_default_background"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="@drawable/rounded_rectangle"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/map_type_default"
+                app:layout_constraintEnd_toEndOf="@+id/map_type_default"
+                app:layout_constraintStart_toStartOf="@+id/map_type_default"
+                app:layout_constraintTop_toTopOf="@+id/map_type_default" />
+
+            <ImageButton
+                android:id="@+id/map_type_default"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/type_default"
+                android:scaleType="fitCenter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <View
+                android:id="@+id/map_type_satellite_background"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="@drawable/rounded_rectangle"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/map_type_satellite"
+                app:layout_constraintEnd_toEndOf="@+id/map_type_satellite"
+                app:layout_constraintStart_toStartOf="@+id/map_type_satellite"
+                app:layout_constraintTop_toTopOf="@+id/map_type_satellite" />
+
+            <ImageButton
+                android:id="@+id/map_type_satellite"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/type_satellite"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toStartOf="@+id/map_type_terrain"
+                app:layout_constraintStart_toEndOf="@+id/map_type_default"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <View
+                android:id="@+id/map_type_terrain_background"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="@drawable/rounded_rectangle"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/map_type_terrain"
+                app:layout_constraintEnd_toEndOf="@+id/map_type_terrain"
+                app:layout_constraintStart_toStartOf="@+id/map_type_terrain"
+                app:layout_constraintTop_toTopOf="@+id/map_type_terrain" />
+
+            <ImageButton
+                android:id="@+id/map_type_terrain"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/type_terrain"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="sans-serif"
+                android:text="Map Type"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/map_type_default_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Default"
+                android:textColor="#808080"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/map_type_default"
+                app:layout_constraintStart_toStartOf="@+id/map_type_default"
+                app:layout_constraintTop_toBottomOf="@+id/map_type_default" />
+
+            <TextView
+                android:id="@+id/map_type_satellite_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Satellite"
+                android:textColor="#808080"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/map_type_satellite"
+                app:layout_constraintStart_toStartOf="@+id/map_type_satellite"
+                app:layout_constraintTop_toBottomOf="@+id/map_type_satellite" />
+
+            <TextView
+                android:id="@+id/map_type_terrain_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Terrain"
+                android:textColor="#808080"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/map_type_terrain"
+                app:layout_constraintStart_toStartOf="@+id/map_type_terrain"
+                app:layout_constraintTop_toBottomOf="@+id/map_type_terrain" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
