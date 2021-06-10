@@ -204,27 +204,40 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         addressList = geocoder.getFromLocationName(location, 1);
                     } catch (IOException e) {
                         e.printStackTrace();
-                        Toast.makeText(MapsActivity.this, "Enter a correct address", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MapsActivity.this, "Enter a correct address", Toast.LENGTH_LONG).show();
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                        Toast.makeText(MapsActivity.this, "Enter a correct address", Toast.LENGTH_LONG).show();
                     }
                     // on below line we are getting the location
                     // from our list a first position.
-                    Address address = addressList.get(0);
+                    try {
+                        Address address = addressList.get(0);
 
-                    // on below line we are creating a variable for our location
-                    // where we will add our locations latitude and longitude.
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                        // on below line we are creating a variable for our location
+                        // where we will add our locations latitude and longitude.
+                        LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
-                    // on below line we are adding marker to that position.
-                    map.addMarker(new MarkerOptions().position(latLng).title(location));
+                        // on below line we are adding marker to that position.
+                        map.addMarker(new MarkerOptions().position(latLng).title(location));
 
-                    // below line is to animate camera to that position.
-                    map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-                    gestureMap();
+                        // below line is to animate camera to that position.
+                        map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                        gestureMap();
 
-                    map.setMapType(map.getMapType());
-                    map.setIndoorEnabled(true);
-                    map.setBuildingsEnabled(true);
-                    map.setTrafficEnabled(true);
+                        map.setMapType(map.getMapType());
+                        map.setIndoorEnabled(true);
+                        map.setBuildingsEnabled(true);
+                        map.setTrafficEnabled(true);
+
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(MapsActivity.this, "Enter a correct address", Toast.LENGTH_LONG).show();
+                    }
+
                 }
                 return false;
             }
@@ -248,7 +261,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // By default marker when open app
         LatLng india = new LatLng(22.3511148,78.6677428);
-        map.addMarker(new MarkerOptions().position(india).title("Marker in India"));
+      //  map.addMarker(new MarkerOptions().position(india).title("Marker in India"));  setting marker
         map.moveCamera(CameraUpdateFactory.newLatLng(india));
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(india,4));
 
