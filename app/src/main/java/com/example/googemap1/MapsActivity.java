@@ -36,6 +36,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.googemap1.databinding.ActivityMapsBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -65,6 +66,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private GoogleMap map;
     private ActivityMapsBinding binding;
+    private Marker marker;
 
     //Floating Button
     FloatingActionButton fab;
@@ -220,8 +222,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         // where we will add our locations latitude and longitude.
                         LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
 
+                        // TODO #checkMarker previous marker when previous marker exist so it will be remove
+                        if (marker != null) {
+                            marker.remove();
+                        }
                         // on below line we are adding marker to that position.
-                        map.addMarker(new MarkerOptions().position(latLng).title(location));
+                        marker=map.addMarker(new MarkerOptions().position(latLng).title(location));
 
                         // below line is to animate camera to that position.
                         map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
@@ -262,6 +268,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         // By default marker when open app
         LatLng india = new LatLng(22.3511148,78.6677428);
       //  map.addMarker(new MarkerOptions().position(india).title("Marker in India"));  setting marker
+
+
         map.moveCamera(CameraUpdateFactory.newLatLng(india));
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(india,4));
 
@@ -318,6 +326,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             // Set the map's camera position to the current location of the device.
                             lastKnownLocation = task.getResult();
                             if (lastKnownLocation != null) {
+
+                                // TODO #checkMarker previous marker when previous marker exist so it will be remove
+                                if (marker != null)
+                                {
+                                    marker.remove();
+                                }
+
                                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                         new LatLng(lastKnownLocation.getLatitude(),
                                                 lastKnownLocation.getLongitude()), 17));
